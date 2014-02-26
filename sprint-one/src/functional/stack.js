@@ -14,6 +14,7 @@ var makeStack = function(){
   instance.pop = function(){
     if(storage['length'] > 0) {
       var transientvalue = storage[storage['length'] - 1];
+      delete storage[storage['length']];
       storage['length'] -= 1;
       return transientvalue;
     }
