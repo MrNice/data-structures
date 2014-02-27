@@ -38,9 +38,12 @@ var makeLinkedList = function(){
 
   list.contains = function(target, node){
     //Use a map for each node, return an array of true or false
-    
+    return _(this).chain().map(function(item) {
+      return item.value === target;
+    }, this).any(function(item){
+      return item;
+    }, this).value();
     //What's the difference between target and node? Why two parameters?
-    
     //return the "any"
   };
 
