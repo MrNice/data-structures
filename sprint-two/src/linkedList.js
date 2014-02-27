@@ -21,6 +21,7 @@ var makeLinkedList = function(){
     //Then set next on the current tail
     this._counter++;
     this[this._counter] = newNode;
+    newNode._counter = this._counter;
     //Then set tail to the new node.
     this.tail = this[this._counter];
   };
@@ -33,7 +34,7 @@ var makeLinkedList = function(){
     //Point Head to head.next
     this.head = this.head.next;
     //Delete what that transient value is pointing to.
-    delete transientValue;
+    delete this[transientValue['_counter']];
   };
 
   list.contains = function(target, node){
@@ -56,6 +57,7 @@ var makeNode = function(value){
   node.value = value;
   node.next = null;
   node.previous = null;
+  node._counter = null;
   
   return node;
 };
