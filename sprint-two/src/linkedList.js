@@ -4,7 +4,7 @@ var makeLinkedList = function(){
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value){
+  list.addToTail = function(value) {
     //Add a new node to the list
     var newNode = makeNode(value);
     //Check to see if head is null
@@ -26,8 +26,13 @@ var makeLinkedList = function(){
     this.tail = this[this._counter];
   };
 
-  list.removeHead = function(){
+  list.removeHead = function() {
     //Save what head is pointing to in a transient value
+    if(this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    }
+    
     var transientValue = this.head;
     //Set head.next.previous to head.
     this.head.next.previous = this.head;
@@ -37,7 +42,7 @@ var makeLinkedList = function(){
     delete this[transientValue['_counter']];
   };
 
-  list.contains = function(target, node){
+  list.contains = function(target, node) {
     //Use a map for each node, return an array of true or false
     return _(this).chain().map(function(item) {
       return item.value === target;
@@ -51,7 +56,7 @@ var makeLinkedList = function(){
   return list;
 };
 
-var makeNode = function(value){
+var makeNode = function(value) {
   //Don't change this code
   var node = {};
   node.value = value;
