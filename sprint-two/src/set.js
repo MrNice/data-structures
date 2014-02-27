@@ -8,11 +8,10 @@ var setPrototype = {};
 
 setPrototype.add = function(item){
   this._storage[JSON.stringify(item)] = item;
-  return this._storage[JSON.stringify(item)];
 };
 
 setPrototype.contains = function(item){
-  return this._storage[JSON.stringify(item)] ? true : false;
+  return (this._storage[JSON.stringify(item)] ? true : false);
 };
 
 setPrototype.remove = function(item){
