@@ -1,5 +1,31 @@
-var makeQueue = function() {
-  // Hey! Copy your code from src/functional-shared/queue.js and paste it here
-};
+var queueMethods = {
+  dequeue : function(){
+    var storage = this.storage;
 
-var queueMethods = {};
+    if(storage['length'] > 0) {
+      var transientvalue = storage[0];
+
+      for(var i = 0, l = storage['length']; i < l; i++){
+        storage[i] = storage[i+1];
+      }
+
+      storage['length'] -=  1;
+      return transientvalue;
+    }
+  },
+  enqueue : function(value){
+    var storage = this.storage;
+    storage[storage['length']] = value;
+    storage['length'] += 1;
+  },
+  size : function(){
+    return this.storage['length'];
+  },
+}
+
+var makeQueue = function(){
+  var instance = Object.create(queueMethods);
+  instance['storage'] = { 'length' : 0 };
+
+  return instance;
+}
