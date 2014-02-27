@@ -27,6 +27,7 @@ var makeStack = function() {
 
   for(var key in stackMethods) {
     instance[key] = stackMethods[key];
+    console.log(instance[key] === stackMethods[key]); //TODO REMOVE THIS
   }
 
   // Implement the stackMethods below
