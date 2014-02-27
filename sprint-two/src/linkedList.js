@@ -1,22 +1,28 @@
 var makeLinkedList = function(){
   var list = {};
-  list._head = null;
-  list._tail = null;
+  list._counter = 0;
+  list.head = null;
+  list.tail = null;
 
   list.addToTail = function(value){
     //Add a new node to the list
-    
+    var newNode = makeNode(value);
     //Check to see if head is null
-    
+    // the first node
+    if (this.head === null) {
       //If yes, add a node to list and point head to newnode, newnode.previous to head.
-      
-      //Point tail to newnode
-      
+      this.head = newNode;
+    }
     //Point newnode.previous to what tail is pointing at
-    
+     else {
+      newNode.previous = this.tail;
+      this.tail.next = newNode;
+     }
     //Then set next on the current tail
-    
+    this._counter++;
+    this[this._counter] = newNode;
     //Then set tail to the new node.
+    this.tail = this[this._counter];
   };
 
   list.removeHead = function(){
@@ -40,9 +46,9 @@ var makeLinkedList = function(){
 var makeNode = function(value){
   //Don't change this code
   var node = {};
-  node._value = value;
-  node._next = null;
-  node._previous = null;
+  node.value = value;
+  node.next = null;
+  node.previous = null;
   
   return node;
 };
