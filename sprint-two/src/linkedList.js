@@ -27,9 +27,13 @@ var makeLinkedList = function(){
 
   list.removeHead = function(){
     //Save what head is pointing to in a transient value
+    var transientValue = this.head;
     //Set head.next.previous to head.
+    this.head.next.previous = this.head;
     //Point Head to head.next
+    this.head = this.head.next;
     //Delete what that transient value is pointing to.
+    delete transientValue;
   };
 
   list.contains = function(target, node){
