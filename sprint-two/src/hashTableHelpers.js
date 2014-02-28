@@ -49,3 +49,9 @@ var getIndexBelowMaxForKey = function(str, max){
   }
   return hash % max;
 };
+
+// These are more hashing functions. Don't worry about them. They are used in 
+// the extra credit (bloom filters). It's ridiculous to ask us to make two 
+// hash functions.
+
+
