@@ -55,3 +55,70 @@ var getIndexBelowMaxForKey = function(str, max){
 // hash functions.
 
 
+function djb2(s, tableSize) {
+039.
+var b = '', i, hash = 5381;
+040.
+ 
+041.
+for (i = 0; i < s.length; i++) {
+042.
+b += deciToBin(s[i].charCodeAt());
+043.
+}
+044.
+ 
+045.
+for (i = 0; i < b.length; i++) {
+046.
+if (b[i] == '1') {
+047.
+hash = ((hash << 5) + hash) + 1;
+048.
+} else {
+049.
+hash = ((hash << 5) + hash) + 0;
+050.
+}
+051.
+}
+052.
+ 
+053.
+return Math.abs(hash) % tableSize;
+054.
+}
+055.
+ 
+056.
+ 
+057.
+/**
+058.
+* Universal Hash
+059.
+*/
+060.
+function universalHash(s, tableSize) {
+061.
+var b = 27183, h = 0, a = 31415;
+062.
+ 
+063.
+if (tableSize > 1) {
+064.
+for (i = 0; i < s.length; i++) {
+065.
+h = (a * h + s[i].charCodeAt()) % tableSize;
+066.
+a = ((a % tableSize) * (b % tableSize)) % (tableSize);
+067.
+}
+068.
+}
+069.
+ 
+070.
+return h;
+071.
+}
