@@ -1,16 +1,30 @@
-var makeTree = function(value){
-  var newTree = {};
-  newTree.value = value;
-  newTree.children = undefined;
+var makeTree = function(value, parent, children){
+  var newTree = {
+    value : value,
+    parent : (parent ? parent : null),
+    children : [],
+  };
+
+  for(var key in treeMethods) {
+    newTree[key] = treeMethods[key];
+  }
+
+  _.each(children, function(child) {
+    newTree.children.push(child);
+  });
+
   return newTree;
 };
 
 
-var treeMethods = {};
-
-treeMethods.addChild = function(value){
+var treeMethods = {
+  addChild : function(value){
+    this.children.push(makeTree(value));
+  },
+  contains : function(target){
+    
+  },
 };
 
-treeMethods.contains = function(target){
-};
+
 
