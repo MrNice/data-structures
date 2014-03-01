@@ -38,6 +38,7 @@ HashTable.prototype.remove = function(k){
   //search storage[i] for arr[0] === key
 
   //If found, splice it out of the array.
+
   // NOTE: use splice to modify the nested array.
 
   //else return undefined
@@ -49,6 +50,7 @@ HashTable.prototype.manipulateStorage = function(index, key, doesExist, notExist
   //If it's full, search for the arr[0] === key
 
     //If found, doesExist(key, value), which returns a value
+    return doesExist(subindex, key);
 
   }
   //If nothing has returned by now, run notexist
