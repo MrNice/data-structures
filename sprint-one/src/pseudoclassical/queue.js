@@ -21,12 +21,12 @@ var queueMethods = {
   size : function(){
     return this.storage['length'];
   },
-}
+};
 
 var Queue = function(){
   this.storage = {};
   this.storage.length = 0;
-}
+};
 
 for(var key in queueMethods) {
   Queue.prototype[key] = queueMethods[key];

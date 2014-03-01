@@ -1,16 +1,17 @@
 var expect = chai.expect;
 var assert = chai.assert;
 
-describe("set", function() {
+describe("bloom filter", function() {
   var set;
 
   beforeEach(function() {
     set = makeSet();
+    bloom = new Bloom(set);
   });
 
-  it("should have methods named 'add', 'contains', and 'remove'", function() {
+  it("should have methods named 'add', 'check', and 'remove'", function() {
     expect(set.add).to.be.a('function');
-    expect(set.contains).to.be.a('function');
+    expect(set.check).to.be.a('function');
     expect(set.remove).to.be.a('function');
   });
 
