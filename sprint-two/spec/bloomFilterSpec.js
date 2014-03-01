@@ -2,11 +2,10 @@ var expect = chai.expect;
 var assert = chai.assert;
 
 describe("bloom filter", function() {
-  var set;
+  var bloom;
 
   beforeEach(function() {
-    set = makeSet();
-    bloom = new Bloom(set);
+    bloom = new Bloom(); //Defaults to an object
   });
 
   it("should have methods named 'add', 'check', and 'remove'", function() {
