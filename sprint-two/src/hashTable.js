@@ -12,20 +12,30 @@ table.get(getIndexBelowMaxForKey("Sup", 8));
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this.manipulateStorage(i, k, function(){}, function(){});
+  var storage = this._storage;
   //If storage[i] is empty, set it to [[k, v]]
-
+  if(!storage[i]) {
+    storage[i] = [[k, v]];
+  }
   //Otherwise, search storage[i] for arr[0] === key
-
-  //if found, set arr[1] to value
-
+  for(var j = 0, length = storage[i].length; j < length; j++){
+    //if found, set arr[1] to value
+    if(storage[i][j][0] === k) {
+      storage[i][j][1] = v;
+      return v;
+    }
+  }
   //otherwise, storage[i].push([k, v])
+  storage[i].push([k, v]);
+
+  return v;
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this.manipulateStorage(i, k, function(){}, function(){});
-  //search storage[i] for arr[0] === key
+  //If storage[i] is empty, return undefined
+
+  //Else, search storage[i] for arr[0] === key
 
   //if found, return value
 
@@ -34,26 +44,12 @@ HashTable.prototype.retrieve = function(k){
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this.manipulateStorage(i, k, function(){}, function(){});
-  //search storage[i] for arr[0] === key
+  //If storage[i] is empty, return undefined
+
+  //Else, search storage[i] for arr[0] === key
 
   //If found, splice it out of the array.
-
-  // NOTE: use splice to modify the nested array.
+  // NOTE: use splice to modify the array.
 
   //else return undefined
-};
-
-HashTable.prototype.manipulateStorage = function(index, key, doesExist, notExist){
-  //Check if this.storage[i] is empty
-  if(this._storage[index] !== undefined){
-  //If it's full, search for the arr[0] === key
-
-    //If found, doesExist(key, value), which returns a value
-    return doesExist(subindex, key);
-
-  }
-  //If nothing has returned by now, run notexist
-
-  //return the value
 };
