@@ -30,7 +30,7 @@ var bloomMethods = {
 
 var Bloom = function(storage, hashes, tablesize) {
   this.storage = storage || {};
-  this.table = limitedArray(tablesize || 18);
+  this.table = makeLimitedArray(tablesize || 18);
   this.hashes = hashes || {
     hr : getIndexBelowMaxForKey,
     djb2 : djb2,
