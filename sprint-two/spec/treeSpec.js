@@ -50,6 +50,6 @@ describe("tree", function() {
 
   it("should be able to point to its parent", function() {
     tree.addChild(5);
-    expect(tree.children[0].parent).to.be(tree);
+    expect(tree.children[0].parent).to.equal(tree);
   })
 });
