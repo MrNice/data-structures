@@ -20,7 +20,7 @@ HashTable.prototype.insert = function(k, v){
   //Otherwise, search storage[i] for arr[0] === key
   for(var j = 0, length = storage[i].length; j < length; j++){
     //if found, set arr[1] to value
-    if(storage[i][j][0] === k) {
+    if(storage[i][j][0] == k) {
       storage[i][j][1] = v;
       return v;
     }
@@ -33,23 +33,35 @@ HashTable.prototype.insert = function(k, v){
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  //If storage[i] is empty, return undefined
+  var storage = this._storage;
 
-  //Else, search storage[i] for arr[0] === key
+  if(!storage[i]) {
+    return undefined;
+  }
 
-  //if found, return value
+  for(var j = 0, length = storage[i].length; j < length; j++) {
+    if(storage[i][j][0] == k) {
+        return storage[i][j][1];
+    }
+  }
 
-  //else, return undefined
+  return undefined;
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var storage = this._storage;
   //If storage[i] is empty, return undefined
-
+  if(!storage[i]) {
+    return undefined;
+  }
   //Else, search storage[i] for arr[0] === key
-
+  for(var j = 0, length = storage[i].length; j < length; j++) {
+    if(storage[i][j][0] == k) {
+      storage[i].splice(j,1, [k, null]);
+    }
+  }
   //If found, splice it out of the array.
   // NOTE: use splice to modify the array.
-
   //else return undefined
 };
