@@ -19,10 +19,10 @@ var makeTree = function(value, parent, children){
 
 var treeMethods = {
   addChild : function(value){
-    this.children.push(makeTree(value));
+    this.children.push(makeTree(value, this));
   },
   contains : function(target){
-    
+
   },
 };
 

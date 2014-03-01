@@ -44,4 +44,12 @@ describe("tree", function() {
     assert.isTrue(tree.contains(8));
   });
 
+  it("should know that the root's parent is null", function() {
+    assert.isTrue(tree.parent === null);
+  });
+
+  it("should be able to point to its parent", function() {
+    tree.addChild(5);
+    expect(tree.children[0].parent).to.be(tree);
+  })
 });
